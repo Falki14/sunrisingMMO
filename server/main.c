@@ -7,6 +7,7 @@
 #include <pthread.h>
 #include <stdlib.h>
 #include <time.h>
+#include "multiLog.h"
 #include "main.h"
 
 /**
@@ -71,7 +72,9 @@ int createSocketServer()
 		puts("Connection accepted");
 		
 		pthread_t sniffer_thread;
-		new_sock = malloc(1);
+        //int i;
+		//new_sock = (char*) malloc (i+1);;
+        new_sock = malloc(1);
 		*new_sock = client_sock;
         //double *new_sock= (double *) malloc(sizeof(client_sock)+1);
 		
@@ -134,43 +137,4 @@ void *connection_handler(void *socket_desc)
 	free(socket_desc);
 	
 	return 0;
-}
-
-
-/**
- * print error message
- * @author Falki
- * @param char message
- * */
-int errorMessageLog(const char *message)
-{
-    t = time(NULL);
-    ts = localtime(&t);
-    printf("[%d-%d-%d %d:%d:%d] ERROR: %s \n",
-     ts->tm_year+1900,
-     ts->tm_mon+1,
-     ts->tm_mday,
-     ts->tm_hour,
-     ts->tm_min,
-     ts->tm_sec
-     ,message);
-}
-
-/**
- * print info message
- * @author Falki
- * @param char message
- * */
-int infoMessageLog(const char *message)
-{
-    t = time(NULL);
-    ts = localtime(&t);
-    printf("[%d-%d-%d %d:%d:%d] INFO: %s \n",
-     ts->tm_year+1900,
-     ts->tm_mon+1,
-     ts->tm_mday,
-     ts->tm_hour,
-     ts->tm_min,
-     ts->tm_sec
-     ,message);
 }
