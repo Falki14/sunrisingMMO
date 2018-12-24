@@ -1,7 +1,7 @@
 TARGET  := sunrisingServerCore
 
-CFILES  := $(wildcard source/*.c)
-OFILES  := $(patsubst source/%,build.linux/%,$(CFILES:.c=.o))
+CFILES  := $(wildcard source/*.cpp)
+OFILES  := $(patsubst source/%,build.linux/%,$(CFILES:.cpp=.o))
 
 CFLAGS  := -g -Wall -Iinclude
 LDFLAGS :=
@@ -15,10 +15,10 @@ build.linux:
 	@mkdir build.linux/
 
 $(TARGET): $(OFILES)
-	@$(CC) -o $@ $^ $(LDFLAGS)  $(OBJLIBS)
+	@$(CXX) -o $@ $^ $(LDFLAGS)  $(OBJLIBS)
 
-$(OFILES): build.linux/%.o : source/%.c
-	@$(CC) -o $@ -c $< $(CFLAGS) $(OBJLIBS)
+$(OFILES): build.linux/%.o : source/%.cpp
+	@$(CXX) -o $@ -c $< $(CFLAGS) $(OBJLIBS)
 
 clean:
 	@$(RM) build.linux/
