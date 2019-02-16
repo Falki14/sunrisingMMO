@@ -1,5 +1,8 @@
 #ifndef SOCKETHANDLER_H
 #define SOCKETHANDLER_H
-int createSocketServer();
-void *connection_handler(void *);
+class socketHandler
+{
+    public:
+        int createSocketServer();
+};
 #endif

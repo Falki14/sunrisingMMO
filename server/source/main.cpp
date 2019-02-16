@@ -23,7 +23,8 @@ int main(int argc, char *argv[])
      * Create socket
      * */
     logHandler *log = new logHandler();
+    socketHandler *socket = new socketHandler();
     log->infoMessageLog("Sunrising-Network Server starts now.");
-    createSocketServer();
+    socket->createSocketServer();
     //createSocketServer();
 }

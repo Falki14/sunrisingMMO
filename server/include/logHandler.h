@@ -3,7 +3,7 @@
 class logHandler
 {
     public:
-    int errorMessageLog(const char *message);
-    int infoMessageLog(const char *message);
+        int errorMessageLog(const char *message);
+        int infoMessageLog(const char *message);
 };
 #endif

@@ -15,11 +15,14 @@
 int socket_desc, client_sock, c , read_size, *new_sock;
 struct sockaddr_in server, client;
 
+//the thread function
+void *connection_handler(void *);
+
 /**
  * create socket connection
  * @author Falki
  * */
-int createSocketServer()
+int socketHandler::createSocketServer()
 {
     socket_desc = socket(AF_INET, SOCK_STREAM, 0);
     if(socket_desc == -1)
@@ -62,7 +65,7 @@ int createSocketServer()
         new_sock= (int *) malloc(client_sock +1);
 		*new_sock = client_sock;
 		
-		if( pthread_create( &sniffer_thread , NULL ,  connection_handler , (void*) new_sock) < 0)
+		if( pthread_create( &sniffer_thread , NULL , connection_handler , (void*) new_sock) < 0)
 		{
 			perror("could not create thread");
 			return 1;
